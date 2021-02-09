@@ -1,0 +1,14 @@
+syntax = "proto2";
+
+package package_bearing;
+
+message Message_bearing
+{
+	optional string bearing_name = 1;
+	optional int32 bearing_diameter_outer_race = 2;
+	optional int32 bearing_diameter_inner_race = 3;
+	optional int32 bearing_diameter_roller = 4;
+	optional float bearing_roller_angle = 5;
+	optional int32 bearing_roller_number = 6;
+	
+}

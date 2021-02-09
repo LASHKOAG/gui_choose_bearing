@@ -1,0 +1,42 @@
+protoc c:\addressbook.proto --cpp_out=./
+or
+
+protoc addressbook.proto --cpp_out=./
+
+
+
+$ protoc --cpp_out=. hello.proto
+
+		--> added in hi.cpp #include "hello.pb.h"
+
+$ g++ -std=c++17 hi.cpp hello.pb.cc -o out_name `pkg-config --cflags --libs protobuf`
+
+$ ./out_name
+
+================================================================================================================
+https://www.youtube.com/watch?v=KPoBaBpr2XI&t=303s
+
+Commands to install protocol Buffer on terminal (linux):
+
+$ sudo apt-get install autoconf automake libtool curl make g++ unzip
+$ wget https://github.com/protocolbuffers/pr...​
+			protoc-3.14.0-linux-x86_64.zip
+			https://github.com/protocolbuffers/protobuf/releases/protobuf-cpp-3.14.0.tar.gz
+$ tar -xvzf protobuf-cpp-3.11.0.tar.gz
+$ cd protobuf-cpp-3.11.0
+$ ./configure
+$ make
+$ make install
+$ sudo ldconfig
+
+
+Commands to run a protobuf file:
+1. protoc –I=$SRC_DIR --cpp_out=$DST_DIR $SCR_DIR/protofile.proto
+        or
+        protoc --cpp_out=. protofile.proto
+
+
+2. g++ -std=c++17 C_file.cpp protofile.pb.cc -o binaryfilename `pkg-config --cflags --libs protobuf`
+
+
+3. ./binaryfilename
