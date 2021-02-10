@@ -1,5 +1,5 @@
 #include "mainwindow.h"
-
+#include <QCoreApplication>
 
 
 MainWindow::MainWindow(QWidget *parent)
@@ -9,10 +9,17 @@ MainWindow::MainWindow(QWidget *parent)
     MainLayout->addWidget(Btn_1);
     MainLayout->addWidget(label);
 
+    MainLayout->addWidget(btn_quit);
+
+
     MainWidget->setLayout(MainLayout);
     setCentralWidget(MainWidget);
 
     connect(Btn_1, SIGNAL(clicked()), this, SLOT(press_btn()));
+
+    //quit
+//    connect(btn_quit, SIGNAL(clicked()), this, SLOT(QCoreApplication::quit() ));
+    connect(btn_quit, &QPushButton::clicked, this, &QCoreApplication::quit, Qt::QueuedConnection);
 }
 
 void MainWindow::press_btn()

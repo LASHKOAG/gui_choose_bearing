@@ -30,8 +30,12 @@ public:
     QLabel *label = new QLabel("Enter bearing name: ");
     package_bearing::Message_bearing bearing;
 
+    QPushButton *btn_quit = new QPushButton("EXIT");
+
 public slots:
     void press_btn();
+private slots:
+
 };
 
 #endif // MAINWINDOW_H
