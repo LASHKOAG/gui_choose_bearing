@@ -23,16 +23,14 @@ public:
     ~MainWindow();
 
     QWidget *MainWidget = new QWidget;
-    QPushButton *Btn_1 = new QPushButton("Button");
     QGridLayout *MainLayout = new QGridLayout;
-    QLineEdit *Line = new QLineEdit();
-
-    QLabel *label = new QLabel("Enter bearing name: ");
     package_bearing::Message_bearing bearing;
 
-    QPushButton *btn_quit = new QPushButton("EXIT");
-
+    //bearing_name
     QHBoxLayout *h_layout_bearing_name = new QHBoxLayout;
+    QLabel *label_bearing_name = new QLabel("Enter bearing name: ");
+    QLineEdit *line_bearing_name = new QLineEdit();
+    QPushButton *btn_bearing_name = new QPushButton("Button");
 
     //bearing_diameter_outer_race
     QHBoxLayout *h_layout_bearing_diameter_outer_race = new QHBoxLayout;
@@ -40,14 +38,14 @@ public:
     QLineEdit *line_bearing_diameter_outer_race = new QLineEdit();
     QPushButton *btn_bearing_diameter_outer_race = new QPushButton("Button");
 
+    //exit
     QHBoxLayout *h_layout_btn_exit = new QHBoxLayout;
+    QPushButton *btn_quit = new QPushButton("EXIT");
 
     QVBoxLayout *v_layout = new QVBoxLayout;
 
-
-
 public slots:
-    void press_btn();
+    void press_btn_bearing_name();
     void press_btn_bearing_diameter_outer_race();
 private slots:
 

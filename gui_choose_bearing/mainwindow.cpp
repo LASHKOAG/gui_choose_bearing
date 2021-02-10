@@ -5,9 +5,9 @@
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
 {
-    h_layout_bearing_name->addWidget(label);
-    h_layout_bearing_name->addWidget(Line);
-    h_layout_bearing_name->addWidget(Btn_1);
+    h_layout_bearing_name->addWidget(label_bearing_name);
+    h_layout_bearing_name->addWidget(line_bearing_name);
+    h_layout_bearing_name->addWidget(btn_bearing_name);
 
     h_layout_bearing_diameter_outer_race->addWidget(label_bearing_diameter_outer_race);
     h_layout_bearing_diameter_outer_race->addWidget(line_bearing_diameter_outer_race);
@@ -32,7 +32,7 @@ MainWindow::MainWindow(QWidget *parent)
     MainWidget->setLayout(MainLayout);
     setCentralWidget(MainWidget);
 
-    connect(Btn_1, SIGNAL(clicked()), this, SLOT(press_btn()));
+    connect(btn_bearing_name, SIGNAL(clicked()), this, SLOT(press_btn_bearing_name()));
 
     connect(btn_bearing_diameter_outer_race, SIGNAL(clicked()), this, SLOT(press_btn_bearing_diameter_outer_race()));
 
@@ -41,9 +41,9 @@ MainWindow::MainWindow(QWidget *parent)
     connect(btn_quit, &QPushButton::clicked, this, &QCoreApplication::quit, Qt::QueuedConnection);
 }
 
-void MainWindow::press_btn()
+void MainWindow::press_btn_bearing_name()
 {
-    QString s = Line->text();
+    QString s = line_bearing_name->text();
 //    qDebug() << "s - " << s;
 //    Btn_1->setText(s);
 
