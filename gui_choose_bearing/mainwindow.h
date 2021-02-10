@@ -32,6 +32,13 @@ public:
 
     QPushButton *btn_quit = new QPushButton("EXIT");
 
+    QHBoxLayout *h_layout_bearing_name = new QHBoxLayout;
+    QHBoxLayout *h_layout_btn_exit = new QHBoxLayout;
+
+    QVBoxLayout *v_layout = new QVBoxLayout;
+
+
+
 public slots:
     void press_btn();
 private slots:

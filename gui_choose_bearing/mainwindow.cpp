@@ -5,11 +5,22 @@
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
 {
-    MainLayout->addWidget(Line);
-    MainLayout->addWidget(Btn_1);
-    MainLayout->addWidget(label);
+    h_layout_bearing_name->addWidget(label);
+    h_layout_bearing_name->addWidget(Line);
+    h_layout_bearing_name->addWidget(Btn_1);
 
-    MainLayout->addWidget(btn_quit);
+    h_layout_btn_exit->addWidget(btn_quit);
+
+    v_layout->addLayout(h_layout_bearing_name);
+    v_layout->addLayout(h_layout_btn_exit);
+
+    MainWidget->setLayout(v_layout);
+
+//    MainLayout->addWidget(Line);
+//    MainLayout->addWidget(Btn_1);
+//    MainLayout->addWidget(label);
+
+//    MainLayout->addWidget(btn_quit);
 
 
     MainWidget->setLayout(MainLayout);
@@ -18,7 +29,7 @@ MainWindow::MainWindow(QWidget *parent)
     connect(Btn_1, SIGNAL(clicked()), this, SLOT(press_btn()));
 
     //quit
-//    connect(btn_quit, SIGNAL(clicked()), this, SLOT(QCoreApplication::quit() ));
+    //    connect(btn_quit, SIGNAL(clicked()), this, SLOT(QCoreApplication::quit() ));
     connect(btn_quit, &QPushButton::clicked, this, &QCoreApplication::quit, Qt::QueuedConnection);
 }
 
