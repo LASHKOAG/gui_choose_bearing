@@ -48,6 +48,7 @@ public:
 
 public slots:
     void press_btn();
+    void press_btn_bearing_diameter_outer_race();
 private slots:
 
 };

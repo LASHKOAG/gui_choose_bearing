@@ -34,6 +34,8 @@ MainWindow::MainWindow(QWidget *parent)
 
     connect(Btn_1, SIGNAL(clicked()), this, SLOT(press_btn()));
 
+    connect(btn_bearing_diameter_outer_race, SIGNAL(clicked()), this, SLOT(press_btn_bearing_diameter_outer_race()));
+
     //quit
     //    connect(btn_quit, SIGNAL(clicked()), this, SLOT(QCoreApplication::quit() ));
     connect(btn_quit, &QPushButton::clicked, this, &QCoreApplication::quit, Qt::QueuedConnection);
@@ -45,6 +47,9 @@ void MainWindow::press_btn()
 //    qDebug() << "s - " << s;
 //    Btn_1->setText(s);
 
+    //check entered field empty or has info
+
+    //if field no empty then:
     //set name bearing from user
     bearing.set_bearing_name(s.toStdString());
 
@@ -64,6 +69,29 @@ void MainWindow::press_btn()
 //    qDebug() << "str.fromStdString(utf8_text_v2) - " << str;
 }
 
+void MainWindow::press_btn_bearing_diameter_outer_race()
+{
+    //initializing
+    bearing.set_bearing_diameter_outer_race(0);
+
+    //get information from user
+    QString s = line_bearing_diameter_outer_race ->text();
+
+    //convert from Qstring to number
+    qint32 dec = s.toInt();
+    qDebug() << "dec = " << dec;
+
+    //check  this letter or number?
+    if(dec > 0){
+        //if entered info is number then:
+        bearing.set_bearing_diameter_outer_race(s.toInt());
+        qDebug() << "bearing.set_bearing_diameter_outer_race : " << bearing.bearing_diameter_outer_race();
+    }else{
+        //give windows with WARNING: you entered wrong size
+        qDebug() << "bearing.set_bearing_diameter_outer_race : no valid parameter";
+    }
+
+}
 
 MainWindow::~MainWindow()
 {
