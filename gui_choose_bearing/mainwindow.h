@@ -33,6 +33,13 @@ public:
     QPushButton *btn_quit = new QPushButton("EXIT");
 
     QHBoxLayout *h_layout_bearing_name = new QHBoxLayout;
+
+    //bearing_diameter_outer_race
+    QHBoxLayout *h_layout_bearing_diameter_outer_race = new QHBoxLayout;
+    QLabel *label_bearing_diameter_outer_race = new QLabel("Enter bearing diameter outer race: ");
+    QLineEdit *line_bearing_diameter_outer_race = new QLineEdit();
+    QPushButton *btn_bearing_diameter_outer_race = new QPushButton("Button");
+
     QHBoxLayout *h_layout_btn_exit = new QHBoxLayout;
 
     QVBoxLayout *v_layout = new QVBoxLayout;

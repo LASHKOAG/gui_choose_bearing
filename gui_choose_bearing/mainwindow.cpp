@@ -9,9 +9,15 @@ MainWindow::MainWindow(QWidget *parent)
     h_layout_bearing_name->addWidget(Line);
     h_layout_bearing_name->addWidget(Btn_1);
 
+    h_layout_bearing_diameter_outer_race->addWidget(label_bearing_diameter_outer_race);
+    h_layout_bearing_diameter_outer_race->addWidget(line_bearing_diameter_outer_race);
+    h_layout_bearing_diameter_outer_race->addWidget(btn_bearing_diameter_outer_race);
+
     h_layout_btn_exit->addWidget(btn_quit);
 
     v_layout->addLayout(h_layout_bearing_name);
+    v_layout->addLayout(h_layout_bearing_diameter_outer_race);
+
     v_layout->addLayout(h_layout_btn_exit);
 
     MainWidget->setLayout(v_layout);
