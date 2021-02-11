@@ -10,8 +10,11 @@
 #include <QDebug>
 #include <QString>
 #include "proto_bearing.pb.h"
-//#include <iostream>
+#include <iostream>
+#include <fstream>
 #include <QLabel>
+#include <QCoreApplication>
+#include <QFile>
 
 
 class MainWindow : public QMainWindow
@@ -43,6 +46,11 @@ public:
     QPushButton *btn_quit = new QPushButton("EXIT");
 
     QVBoxLayout *v_layout = new QVBoxLayout;
+
+    //запись измерений в файл
+    //Возвращает 0 в случае успеха либо отрицательные значения
+    //Первый аргумент - это путь к месторасположению файла, 2 ой - полученная структура от slave устройства
+    qint32 write_file (QString);
 
 public slots:
     void press_btn_bearing_name();
