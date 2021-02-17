@@ -1,9 +1,5 @@
 #include "mainwindow.h"
 
-#include <QChar>
-#include <QVector>
-
-
 QDataStream& operator << (QDataStream &out, const package_bearing::Message_bearing &pb)
 {
     std::string bearing_message_str = pb.SerializeAsString();
