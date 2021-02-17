@@ -17,6 +17,9 @@
 #include <QFile>
 
 
+QDataStream& operator << (QDataStream &out, const package_bearing::Message_bearing &pb);
+QDataStream& operator >> (QDataStream &in, const package_bearing::Message_bearing &pb);
+
 class MainWindow : public QMainWindow
 {
     Q_OBJECT
