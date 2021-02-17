@@ -8,8 +8,8 @@ QDataStream& operator << (QDataStream &out, const package_bearing::Message_beari
 {
     std::string bearing_message_str = pb.SerializeAsString();
     QByteArray ba(bearing_message_str.data(), int(bearing_message_str.size()));
-    out << QString("This bearing");
-    out << 0x10;
+//    out << QString("This bearing");
+//    out << 0x10;
     out << ba;
     return out;
 }
@@ -17,12 +17,12 @@ QDataStream& operator << (QDataStream &out, const package_bearing::Message_beari
 QDataStream& operator >> (QDataStream &in, package_bearing::Message_bearing &pb)
 {
 //    std::string bearing_message_str = pb.SerializeAsString();
-    QByteArray ba;
+    QByteArray ba_in;
     QString tmpStr;
     qint32 ver = 0;
-    in >> tmpStr;
+//    in >> tmpStr;
 //    Q_ASSERT(tmpStr != QString("This bearing"));
-    in >> ver;
+//    in >> ver;
 //    switch (ver) {
 //    case 0x10:
 //        dfdfdf
@@ -33,18 +33,24 @@ QDataStream& operator >> (QDataStream &in, package_bearing::Message_bearing &pb)
 
 //    }
 //    if 0x10;
-    in >> ba;
+    in >> ba_in;
 
-    std::string str_bearing_after = ba.toStdString();
-//    package_bearing::Message_bearing bearing2;
+//    std::string str_bearing_after = ba.toStdString();
+//    package_bearing::Message_bearing bearing22;
 //    package_bearing::Message_bearing pb;
 
-    pb.ParseFromString(str_bearing_after);
+//    bearing22.ParseFromString(str_bearing_after);
+//    pb.ParseFromString(str_bearing_after);
 
-//    std::cout << "Read from Qfile ->bearing2.bearing_name() : " << bearing2.bearing_name() << std::endl;
-//    std::cout << "Read from Qfile ->bearing2.bearing_diameter_outer_race() : " << bearing2.bearing_diameter_outer_race() << std::endl;
-    std::cout << "Read from Qfile ->bearing2.bearing_name() : " << pb.bearing_name() << std::endl;
-    std::cout << "Read from Qfile ->bearing2.bearing_diameter_outer_race() : " << pb.bearing_diameter_outer_race() << std::endl;
+//    if(!pb.ParseFromString(str_bearing_after)){
+//        qDebug() << "OK";
+//    }
+
+//qDebug() << "OK";
+//    std::cout << "Read from Qfile ->bearing2.bearing_name() : " << bearing22.bearing_name() << std::endl;
+//    std::cout << "Read from Qfile ->bearing2.bearing_diameter_outer_race() : " << bearing22.bearing_diameter_outer_race() << std::endl;
+//    std::cout << "Read from Qfile ->bearing2.bearing_name() : " << pb.bearing_name() << std::endl;
+//    std::cout << "Read from Qfile ->bearing2.bearing_diameter_outer_race() : " << pb.bearing_diameter_outer_race() << std::endl;
 
     return in;
 }
@@ -141,63 +147,21 @@ void MainWindow::press_btn_bearing_diameter_outer_race()
         //********** variant QByteArray  <-> std::string
         //Serialize protobuf
         QByteArray dataQ;
-        QDataStream streamQ(dataQ);
+        QDataStream streamQ(&dataQ, QIODevice::ReadWrite);
         streamQ << bearing;
-//        return;
 
         package_bearing::Message_bearing bearing3;
+
         QByteArray dataQ2;
-        QDataStream streamQ2(dataQ2);
-        streamQ2 >> bearing3;
-return;
-
-        std::string bearing_message_str = bearing.SerializeAsString();
-        std::cout << "bearing_message_str : " << bearing_message_str << std::endl;
-
-        //rewrite string in QByteArray
-        QByteArray dataQByteArr_before(bearing_message_str.data(), int(bearing_message_str.size()));
-
-        QString filename = "/home/dev/Desktop/serial_pb";
-
-        QFile *file_before = new QFile(filename);
-            if(!file_before->open(QFile::WriteOnly | QFile::Truncate)){
-                qDebug() << " Could not open file for writing";
-            }
-
-            system("sudo chmod 777 /home/dev/Desktop/serial_pb");
-
-            QDataStream stream_in_file(file_before);
-            stream_in_file << dataQByteArr_before;
-            qDebug() << " file was written";
-            file_before->close();
-        delete file_before;
-
-        qDebug() << " ----test---";
-
-        //---after
+        QDataStream streamQ2(&dataQ, QIODevice::ReadWrite);
+        streamQ2 >> dataQ2;
 
 
-        QFile *file_after = new QFile(filename);
-            if(!file_after->open(QFile::ReadWrite)){
-                qDebug() << " Could not open file for writing";
-            }
-            QDataStream stream_from_file(file_after);
-            QByteArray dataQByteArr_after;
-            stream_from_file >> dataQByteArr_after;
-            qDebug() << " file was read";
-            file_after->close();
-        delete file_after;
+        std::string str_bearing_after = dataQ2.toStdString();
+        bearing3.ParseFromString(str_bearing_after);
 
-        std::string str_bearing_after;
-        str_bearing_after = dataQByteArr_after.toStdString();
-
-        package_bearing::Message_bearing bearing2;
-
-        bearing2.ParseFromString(str_bearing_after);
-
-        std::cout << "Read from Qfile ->bearing2.bearing_name() : " << bearing2.bearing_name() << std::endl;
-        std::cout << "Read from Qfile ->bearing2.bearing_diameter_outer_race() : " << bearing2.bearing_diameter_outer_race() << std::endl;
-
+        std::cout << "Read from Qfile ->bearing2.bearing_name() : " << bearing3.bearing_name() << std::endl;
+        std::cout << "Read from Qfile ->bearing2.bearing_diameter_outer_race() : " << bearing3.bearing_diameter_outer_race() << std::endl;
         //***************************************************
 
     }else{
